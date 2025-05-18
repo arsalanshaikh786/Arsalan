@@ -1,0 +1,145 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flavor Cafe Billing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #ff9966, #ff5e62);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
+      padding: 25px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff5e62;
+      margin-bottom: 20px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 12px 0;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .menu-item label {
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+
+    .menu-item input {
+      width: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 2px solid #ff5e62;
+      border-radius: 5px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff5e62;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background-color: #e04c56;
+    }
+
+    .total {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Flavor Cafe Billing</h1>
+    <form id="billingForm">
+      <div class="menu">
+        <div class="menu-item">
+          <label>Tea (Rs. 10)</label>
+          <input type="number" id="tea" min="0" value="0">
+        </div>
+        <div class="menu-item">
+          <label>Coffee (Rs. 20)</label>
+          <input type="number" id="coffee" min="0" value="0">
+        </div>
+        <div class="menu-item">
+          <label>Cold Coffee (Rs. 60)</label>
+          <input type="number" id="coldCoffee" min="0" value="0">
+        </div>
+        <div class="menu-item">
+          <label>Pizza (Rs. 100)</label>
+          <input type="number" id="pizza" min="0" value="0">
+        </div>
+        <div class="menu-item">
+          <label>Samosa (Rs. 30)</label>
+          <input type="number" id="samosa" min="0" value="0">
+        </div>
+        <div class="menu-item">
+          <label>Chaat (Rs. 50)</label>
+          <input type="number" id="chaat" min="0" value="0">
+        </div>
+      </div>
+      <button type="button" class="btn" onclick="calculateBill()">Calculate Bill</button>
+    </form>
+    <div class="total" id="totalAmount">Total: Rs. 0</div>
+    <button type="button" class="btn" onclick="printBill()">Print Bill</button>
+    <footer>&copy; 2025 Flavor Cafe. All Rights Reserved.</footer>
+  </div>
+
+  <script>
+    function calculateBill() {
+      const prices = { tea: 10, coffee: 20, coldCoffee: 60, pizza: 100, samosa: 30, chaat: 50 };
+      let total = 0;
+      for (let item in prices) {
+        total += (parseInt(document.getElementById(item).value) || 0) * prices[item];
+      }
+      document.getElementById('totalAmount').textContent = `Total: Rs. ${total}`;
+    }
+    
+    function printBill() {
+      window.print();
+    }
+  </script>
+</body>
+</html>
